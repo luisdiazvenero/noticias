@@ -1,10 +1,5 @@
 const ADD_NEWS = 'news/add'
 
-/*
-id
-nombre
-category_id
-*/
 
 const addNews = payload => ({
   type: ADD_NEWS,
@@ -15,7 +10,7 @@ const addNews = payload => ({
 })
 
 const initialState = {
-  data: []
+  data: [],
 }
 export default function reducer(state = initialState, action){
   switch (action.type) {

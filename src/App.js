@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Category from './components/Category'
-//import News from './components/News'
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
+import Category from './components/Category';
+import { addCategory } from './reducers/Categorias';
+
+import {reset} from 'redux-form';
+
+
+
 
 class App extends Component {
   render() {
-    const{ categories} = this.props
+    const { categories, addCategory} = this.props
+
     return (
       <div className="App">
-        <Category categories={categories} />
-        {/*<News />*/}
+        <Category addCategory={addCategory} categories={categories} />
+
       </div>
     );
   }
@@ -25,5 +32,11 @@ const mapStateToProps = state => {
     categories,
   }
 }
-const mapDispatchToProps = dispatch => ({})
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+    addCategory: payload => {
+    dispatch(addCategory(payload))
+    dispatch(reset('category'))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
