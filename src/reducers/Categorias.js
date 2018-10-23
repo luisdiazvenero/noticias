@@ -1,7 +1,7 @@
 const ADD_CATEGORY = 'category/add'
 
 
-const addCategory = payload => ({
+export const addCategory = payload => ({
   type: ADD_CATEGORY,
   payload: {
     ...payload,
