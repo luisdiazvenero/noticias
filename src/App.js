@@ -36,10 +36,10 @@ const mapStateToProps = state => {
   const { Categorias: { data: categories, selected } } = state
   const { Noticias: { data: news } } = state
 
-  console.log(news)
+
   return {
     categories,
-    news,
+    news: news.filter(x => x.categoryId === selected),
     selected
   }
 }
@@ -49,7 +49,10 @@ const mapDispatchToProps = dispatch => ({
       dispatch(reset('category'))
     },
     selectCategory: payload => dispatch(selectCategory(payload)),
-    addNews: payload => dispatch(addNews(payload))
+    addNews: payload => {
+      dispatch(addNews(payload))
+      dispatch(reset('news'))
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
